@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bạn có chắc chắn sẽ sa thải cầu thủ này</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1 style="text-align: center; margin-bottom: 10px;">Xem lại thông tin trước khi sa thải</h1>
+<form th:action="@{/player/delete-player}"
+      method="post" enctype="multipart/form-data" th:object="${player}">
+    <table class="table table-hover table-dark">
+        <tr>
+            <td>Nhập họ cầu thủ</td>
+            <td th:text="*{firstName}"></td>
+        </tr>
+        <tr>
+            <td>Nhập tên cầu thủ</td>
+            <td th:text="*{lastName}"></td>
+        </tr>
+        <tr>
+            <td>Vị trí hiện tại</td>
+            <td th:text="*{positionDetailCode}"></td>
+        </tr>
+        <tr>
+            <td>Lương</td>
+            <td th:text="*{annuallySalary}"></td>
+        </tr>
+        <tr>
+            <td>Giá trị chuyển nhượng</td>
+            <td th:text="*{marketValue}"></td>
+        </tr>
+        <tr>
+            <td>Quốc tịch</td>
+            <td><img style="width: 50px; height: 50px;" object-fit="contain" th:src="@{https://flagcdn.com/{code}.svg(code=${player.getCountryCode()})}" th:alt="${player.getCountryName()}"></td>
+        </tr>
+        <tr>
+            <td>D.O.B</td>
+            <td th:text="*{#dates.format(dateOfBirth, 'dd-MM-yyyy')}"></td>
+        </tr>
+        <tr>
+            <td>Kỹ năng đặc biệt</td>
+            <td th:text="*{skill}"></td>
+        </tr>
+        <tr>
+            <td>Số áo</td>
+            <td th:text="*{clothesNumber}"></td>
+        </tr>
+        <tr>
+            <td>Ngày gia nhập</td>
+            <td th:text="*{#dates.format(createdAt, 'dd-MM-yyyy')}"></td>
+        </tr>
+        <tr>
+            <td>Tình trạng sức khỏe</td>
+            <td>
+                <span th:if="${player.getIsInjury()}" th:remove="tag">Chấn thương</span>
+                <span th:unless="${player.getIsInjury()}" th:remove="tag">Khỏe mạnh</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Avatar</td>
+            <td><img style="width: 50px; height: 50px;" object-fit="contain" th:src="@{${player.getAvatar()}}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a class="btn btn-success" th:href="@{/player/delete-player(id=${player.getId()})}" onclick="return confirm('Bạn có chắc muốn sa thải cầu thủ này')">Sa thải</a>
+                <a href="/player/manage-player" class="btn btn-primary">Trở về màn hình quản lý</a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+    <link
+            class="jsbin"
+            href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <script
+            class="jsbin"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+    ></script>
+    <script
+            class="jsbin"
+            src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"
+    ></script>
+</head>
+<body>
+<form th:action="@{/player/buy-or-update-player}" method="post" th:object="${player}"
+      novalidate="novalidate" enctype="multipart/form-data">
+<div class="table-section">
+    <table id="table">
+        <tr class="header-row">
+            <th colspan="2" class="header-item items">Tạo 1 cầu thủ</th>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">Nhập họ cầu thủ <sup>*</sup></td>
+            <td class="items">
+                <input type="text" th:field="*{firstName}">
+                <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color: darkred">abc</p>
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">Nhập tên cầu thủ <sup>*</sup></td>
+            <td class="items">
+                <input type="text" th:field="*{lastName}">
+                <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: darkred">abc</p>
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">Chọn vị trí</td>
+            <td class="items">
+                <select th:field="*{positionDetailId}">
+                    <option th:each="c: ${positionDetails}" th:value="${c.id}" th:text="${c.code}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">Lương <sup>*</sup></td>
+            <td class="items">
+                <input type="number" th:field="*{annuallySalary}">
+                <p th:if="${#fields.hasErrors('annuallySalary')}" th:errors="*{annuallySalary}" style="color: darkred" placeholder="Nhập lương của cầu thủ">abc</p>
+                <p th:if="${validAnnuallySalary != null}" th:text="${validAnnuallySalary}" style="color: darkred">abc</p>
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">Giá trị chuyển nhượng <sup>*</sup></td>
+            <td class="items">
+                <input type="number" th:field="*{marketValue}">
+                <p th:if="${#fields.hasErrors('marketValue')}" th:errors="*{marketValue}" style="color: darkred" placeholder="Nhập giá trị chuyển nhượng của cầu thủ">abc</p>
+                <p th:if="${validMarketValue != null}" th:text="${validMarketValue}" style="color: darkred">abc</p>
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">Quốc tịch</td>
+            <td class="items">
+                <select th:field="*{countryId}">
+                    <option label="Chọn quốc tịch" th:value="null"></option>
+                    <option th:each="c: ${countries}" th:value="${c.id}" th:text="${c.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">D.O.B</td>
+            <td class="items">
+                <input type="date" th:field="*{dateOfBirth}" id="datefield" onkeydown="return false">
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">Kỹ năng đặc biệt</td>
+            <td class="items">
+                <input type="text" th:field="*{skill}">
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">Số áo <sup>*</sup></td>
+            <td class="items">
+                <input type="number" th:field="*{clothesNumber}">
+                <p th:if="${#fields.hasErrors('clothesNumber')}" th:errors="*{clothesNumber}" style="color: darkred">abc</p>
+                <p th:if="${validClothesNumber != null}" th:text="${validClothesNumber}" style="color: darkred">abc</p>
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items">Avatar</td>
+            <td class="items">
+                <input type="file" name="uploadImg" onchange="readURL(this);" accept=".jpg, .jpeg, .png, .svg">
+                <img id="blah" src="#" alt="your image" />
+                <p th:if="${validAvatar != null}" th:text="${validAvatar}" style="color: darkred">abc</p>
+            </td>
+        </tr>
+        <tr class="table-rows">
+            <td class="items"></td>
+            <td class="items">
+                <input type="submit" value="Tạo" class="btn btn-success">
+                <a href="/player/manage-player" class="btn btn-primary">Thoát</a></td>
+            </td>
+        </tr>
+    </table>
+</div>
+</form>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("datefield").setAttribute("max", today);
+</script>
+</body>
+</html>

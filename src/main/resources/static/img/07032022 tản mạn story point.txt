@@ -1,0 +1,20 @@
+Agile / Waterfall : Mô hình quản trị trong phát triển phần mềm
++ Traditional Waterfall: requirement -> design -> development -> testing -> deploy
+1 cục requirement với nhiều feature
+rollout nhanh, feedback nhanh => dễ sửa đổi => hợp product, thích nghi, dễ ứng biến, cắt giảm được chi phí (những bước lower, optional)
+
+User story: phục vụ cho câu chuyện của 1 người dùng cụ thể
+Velocity: tốc độ của team: v = w/t (w: khối lượng công việc trong 1 sprint / thời gian)
+Vòng xoáy: sprint sau phải nhanh hơn sprint trước: estimation để commit khách hàng / refactor team xem mình làm tốt không, cá nhân gắn với tập thể
+
+Estimation sử dụng giờ: chính xác, quản trị thời gian tốt
+Estimation sử dụng story point:
+- Date không ảnh hưởng đến cảm xúc
+- Story point hướng xử lý task theo độ khó / độ lớn => quan tâm delivery sản phẩm nhanh hay chậm, không quan trọng việc mình dành bao nhiêu thời gian cho task
+- focus shipping value, not spending time => hợp với 1 công ty làm product
+
+Initial Story: story cơ bản
+Các chiều ảnh hưởng đến story point:
+- Complexity
+- Unknowns công việc ko tên (giao tiếp với bên Caresoft)
+- Communication (FE-BE, FE-QC, BE-QC)

@@ -1,0 +1,15 @@
+Objective Biz: Cần lấy được thông tin của người share (tên fb, thời điểm, ldp, param) và export ra file google sheet
++ Khi ấn vào nút share, call API export ra gg sheet 1 bản ghi, truyền xuống Request(tên fb, param...) + save vào DB
+
+
++ Collection event, bảng event_item, bảng event_category
+- nhận tin nhắn
+- ấn vào link
+- share link (submit)
+- API riêng để thêm bản ghi
+
+
+- Thêm field trên Collection event
++ Sự kiện chuyển trạng thái của customer khi nhận được tin nhắn lan tỏa
++ User đã ấn share trang landipage lên facebook 
+- Bổ sung thêm các trường trong collections event có ảnh hưởng 

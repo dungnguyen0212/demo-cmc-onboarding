@@ -1,0 +1,54 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'cmc.demo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.5'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+//    implementation group: 'org.apache.myfaces.core', name: 'myfaces-api', version: '2.3.9'
+//    implementation group: 'org.apache.myfaces.core', name: 'myfaces-impl', version: '2.3.9'
+//    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.58'
+//    implementation group: 'org.ocpsoft.rewrite', name: 'rewrite-servlet', version: '3.5.1.Final'
+//    implementation group: 'org.ocpsoft.rewrite', name: 'rewrite-integration-faces', version: '3.5.1.Final'
+//    implementation group: 'org.ocpsoft.rewrite', name: 'rewrite-config-prettyfaces', version: '3.5.1.Final'
+//    implementation group: 'org.primefaces', name: 'primefaces', version: '11.0.0'
+//    compileOnly group: 'org.apache.myfaces.buildtools', name: 'myfaces-builder-annotations', version: '1.0.9'
+//    implementation group: 'com.google.guava', name: 'guava', version: '29.0-jre'
+//    implementation group: 'org.glassfish', name: 'javax.faces', version: '2.3.5'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+//sourceSets {
+//    main {
+//        // Compiled Java classes should use this directory
+//        java.outputDir = file('src/main/webapp/WEB-INF/classes')
+//    }
+//}
