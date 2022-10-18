@@ -13,6 +13,15 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedStoredProcedureQueries({
+		@NamedStoredProcedureQuery(name = "updateBudget",
+				procedureName = "pkg_budget.update_budget",
+				parameters = {
+						@StoredProcedureParameter(mode = ParameterMode.IN, name = "p_budget_id", type = Long.class),
+						@StoredProcedureParameter(mode = ParameterMode.IN, name = "p_change_money", type = Long.class),
+						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "v_result", type = String.class)
+				})
+})
 public class Budget {
 	@Id
 	@Column(name = "id")

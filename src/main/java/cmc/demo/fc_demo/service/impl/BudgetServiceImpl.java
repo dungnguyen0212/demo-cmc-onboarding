@@ -1,9 +1,7 @@
 package cmc.demo.fc_demo.service.impl;
 
 import cmc.demo.fc_demo.dto.response.BudgetResponse;
-import cmc.demo.fc_demo.dto.response.CountryResponse;
 import cmc.demo.fc_demo.model.Budget;
-import cmc.demo.fc_demo.model.Country;
 import cmc.demo.fc_demo.repository.BudgetRepository;
 import cmc.demo.fc_demo.service.BudgetService;
 import lombok.extern.slf4j.Slf4j;
@@ -46,19 +44,11 @@ public class BudgetServiceImpl implements BudgetService {
 	}
 
 	@Override
-	public BudgetResponse changeMoney(Long id, Long changeMoney) {
-		if (Objects.isNull(id)) {
-			return null;
-		}
-
+	public void changeMoney(Long id, Long changeMoney) {
 		Budget budget = budgetRepository.findById(id)
 				.orElse(null);
 		if (Objects.nonNull(budget) && changeMoney <= budget.getValue()) {
-			budget.setValue(budget.getValue() - changeMoney);
-			budgetRepository.save(budget);
-			return modelMapper.map(budget, BudgetResponse.class);
-		} else {
-			return null;
+			budgetRepository.updateBudget(id, changeMoney);
 		}
 	}
 }

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 import java.util.TimeZone;
@@ -60,5 +61,23 @@ public class DateUtils {
 		} catch (ParseException e) {
 			return null;
 		}
+	}
+
+	public static String format(Date date, String pattern) {
+		return format(date.getTime(), LOCAL_TIME_ZONE, pattern);
+	}
+
+	/**
+	 * @param timestampMilliSec
+	 * @param timezone
+	 * @param pattern
+	 * @return
+	 */
+	public static String format(long timestampMilliSec, String timezone, String pattern) {
+		Instant instant = Instant.ofEpochMilli(timestampMilliSec);
+		ZoneId zoneId = ZoneId.of(timezone);
+		ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instant, zoneId);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+		return zonedDateTime.format(formatter);
 	}
 }

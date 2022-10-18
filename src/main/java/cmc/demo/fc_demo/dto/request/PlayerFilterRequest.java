@@ -1,13 +1,10 @@
 package cmc.demo.fc_demo.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
@@ -35,6 +32,9 @@ public class PlayerFilterRequest {
 	@JsonProperty("country_id")
 	private Long countryId;
 
+	@JsonProperty("condition_id")
+	private Long conditionId;
+
 	@JsonProperty("is_injury")
 	private Boolean isInjury;
 
@@ -46,4 +46,8 @@ public class PlayerFilterRequest {
 
 	@JsonProperty("created_at_to")
 	private String createdAtTo;
+
+	private Integer page = 0;
+
+	private Integer size = 5;
 }

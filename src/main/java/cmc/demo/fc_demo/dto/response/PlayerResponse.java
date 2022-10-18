@@ -6,9 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import java.sql.Timestamp;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @Builder
@@ -83,5 +82,20 @@ public class PlayerResponse {
 
 	@JsonProperty("avatar")
 	private String avatar;
+
+	@JsonProperty("condition_id")
+	private Long conditionId;
+
+	@JsonProperty("condition_code")
+	private String conditionCode;
+
+	@JsonProperty("condition_name")
+	private String conditionName;
+
+	@JsonProperty("condition_icon")
+	private String conditionIcon;
+
+	@JsonProperty("updated_at")
+	private Timestamp updatedAt;
 
 }

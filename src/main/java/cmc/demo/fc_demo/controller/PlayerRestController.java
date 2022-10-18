@@ -6,6 +6,7 @@ import cmc.demo.fc_demo.dto.response.PlayerResponse;
 import cmc.demo.fc_demo.service.PlayerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class PlayerRestController {
 	}
 
 	@PostMapping("/filter")
-	public ResponseEntity<List<PlayerResponse>> getAllFilterPlayer(@RequestBody PlayerFilterRequest request) {
+	public ResponseEntity<Page<PlayerResponse>> getAllFilterPlayer(@RequestBody PlayerFilterRequest request) {
 		log.info("Start filter player by request: {}", request.toString());
 		return ResponseEntity.ok(playerService.findAllPlayerFilter(request));
 	}

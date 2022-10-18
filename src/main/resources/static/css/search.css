@@ -23,8 +23,8 @@
     background: #fff;
     border: 1px solid #EFEFEF;
     border-radius: 3px;
-    -webkit-box-shadow: inset 0 -1px 4px 0 rgba(0,0,0,0.20);
-    box-shadow: inset 0 -1px 4px 0 rgba(0,0,0,0.20);
+    -webkit-box-shadow: inset 0 -1px 4px 0 rgba(0, 0, 0, 0.20);
+    box-shadow: inset 0 -1px 4px 0 rgba(0, 0, 0, 0.20);
     width: 100%;
     position: relative;
     margin-bottom: 10px;
@@ -193,12 +193,15 @@
         height: 60px;
         padding: 8px 0;
     }
+
     .styled-input.multi > div input {
         padding-top: 18px;
     }
+
     .styled-input.multi label {
         padding: 7px 0 0;
     }
+
     .styled-input input#fn:valid ~ label,
     .styled-input input#ln:valid ~ label,
     .styled-input input#city[filled="true"]:valid ~ label,
@@ -206,9 +209,11 @@
     .styled-input .select-state label {
         top: -9px;
     }
+
     .styled-input.multi.error {
         margin-bottom: 30px;
     }
+
     .styled-input label.error,
     .styled-input input:focus ~ label.error,
     .styled-input input#fn:valid ~ label.error,
@@ -216,6 +221,7 @@
         font-size: 13px;
         top: 53px;
     }
+
     .search-area .form-area button.serach-btn {
         height: 60px;
         padding: 0;
@@ -233,8 +239,8 @@
         display: block;
         border: 1px solid #EFEFEF;
         border-radius: 3px;
-        -webkit-box-shadow: inset 0 -1px 4px 0 rgba(0,0,0,0.20);
-        box-shadow: inset 0 -1px 4px 0 rgba(0,0,0,0.20);
+        -webkit-box-shadow: inset 0 -1px 4px 0 rgba(0, 0, 0, 0.20);
+        box-shadow: inset 0 -1px 4px 0 rgba(0, 0, 0, 0.20);
         width: 100%;
         padding: 16px 16px 8px 11.2px;
         height: 50px;
@@ -255,6 +261,7 @@
     .styled-input.multi > div label {
         padding: 12px 0 0 12px;
     }
+
     .styled-input.multi > div input:valid ~ label,
     .styled-input.multi > div input:focus ~ label,
     .styled-input.multi .select-state > label {
@@ -268,6 +275,7 @@
         z-index: 2;
         width: 100%;
     }
+
     .styled-input select {
         left: 0;
         padding-top: 2px;
@@ -357,12 +365,13 @@
         margin-top: -12px;
         margin-bottom: 20px;
     }
+
     /*.styled-input #select-state-1 {*/
     /*    top: 0px;*/
     /*}*/
 }
 
-span.select2-selection.select2-selection--single{
+span.select2-selection.select2-selection--single {
     padding: 20px;
     margin: 0px 2px;
 }
@@ -374,6 +383,24 @@ span#select2-countryId-container {
 }
 
 span#select2-positionDetailId-container {
+    margin: -14px;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+span#select2-countryId-container {
+    margin: -14px;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+span#select2-isInjury-container {
+    margin: -14px;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+span#select2-conditionId-container {
     margin: -14px;
     font-weight: 600;
     color: #6c757d;

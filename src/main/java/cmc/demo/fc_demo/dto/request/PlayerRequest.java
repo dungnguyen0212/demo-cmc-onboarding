@@ -62,4 +62,7 @@ public class PlayerRequest {
 
 	@JsonProperty("avatar")
 	private String avatar;
+
+	@JsonProperty("condition_id")
+	private Long conditionId;
 }

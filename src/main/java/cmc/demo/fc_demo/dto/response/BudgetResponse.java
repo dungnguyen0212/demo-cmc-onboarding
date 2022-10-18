@@ -18,5 +18,5 @@ public class BudgetResponse {
 	private String attributeName;
 
 	@JsonProperty("value")
-	private Integer value;
+	private Long value;
 }

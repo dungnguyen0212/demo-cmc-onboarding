@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Player</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link
             class="jsbin"
             href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
@@ -20,58 +20,66 @@
     ></script>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/form.css}">
+    <style>
+        #table input, #table select {
+            width: 150px;
+        }
+    </style>
 </head>
 <body>
-<form th:action="@{/player/buy-or-update-player}"
-      method="post" novalidate="novalidate" enctype="multipart/form-data" th:object="${player}">
+<form enctype="multipart/form-data"
+      method="post" novalidate="novalidate" th:action="@{/player/buy-or-update-player}" th:object="${player}">
     <div class="table-section">
         <table id="table">
             <tr class="header-row">
-                <th colspan="2" class="header-item items">Cập nhật thông tin cầu thủ</th>
+                <th class="header-item items" colspan="2">Cập nhật thông tin cầu thủ</th>
             </tr>
             <tr class="table-rows">
                 <td class="items">ID cầu thủ</td>
                 <td class="items">
-                    <input type="text" th:field="*{id}" readonly>
-                    <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: darkred">abc</p>
+                    <input readonly th:field="*{id}" type="text">
+                    <p style="color: darkred" th:errors="*{id}" th:if="${#fields.hasErrors('id')}">abc</p>
                 </td>
             </tr>
             <tr class="table-rows">
                 <td class="items">Nhập họ cầu thủ <sup>*</sup></td>
                 <td class="items">
-                    <input type="text" th:field="*{firstName}">
-                    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color: darkred">abc</p>
+                    <input th:field="*{firstName}" type="text">
+                    <p style="color: darkred" th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}">abc</p>
                 </td>
             </tr>
             <tr class="table-rows">
                 <td class="items">Nhập tên cầu thủ <sup>*</sup></td>
                 <td class="items">
-                    <input type="text" th:field="*{lastName}">
-                    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: darkred">abc</p>
+                    <input th:field="*{lastName}" type="text">
+                    <p style="color: darkred" th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}">abc</p>
                 </td>
             </tr>
             <tr class="table-rows">
                 <td class="items">Chọn vị trí</td>
                 <td class="items">
                     <select th:field="*{positionDetailId}">
-                        <option th:each="c: ${positionDetails}" th:value="${c.id}" th:text="${c.code}"></option>
+                        <option th:each="c: ${positionDetails}" th:text="${c.code}" th:value="${c.id}"></option>
                     </select>
                 </td>
             </tr>
             <tr class="table-rows">
                 <td class="items">Lương <sup>*</sup></td>
                 <td class="items">
-                    <input type="text" th:field="*{annuallySalary}" pattern="^[\d,]+$" placeholder="Nhập lương cầu thủ">
-                    <p th:if="${#fields.hasErrors('annuallySalary')}" th:errors="*{annuallySalary}" style="color: darkred">abc</p>
-                    <p th:if="${validAnnuallySalary != null}" th:text="${validAnnuallySalary}" style="color: darkred">abc</p>
+                    <input pattern="^[\d,]+$" placeholder="Nhập lương cầu thủ" th:field="*{annuallySalary}" type="text">
+                    <p style="color: darkred" th:errors="*{annuallySalary}"
+                       th:if="${#fields.hasErrors('annuallySalary')}">abc</p>
+                    <p style="color: darkred" th:if="${validAnnuallySalary != null}" th:text="${validAnnuallySalary}">
+                        abc</p>
                 </td>
             </tr>
             <tr class="table-rows">
                 <td class="items">Giá trị chuyển nhượng <sup>*</sup></td>
                 <td class="items">
-                    <input type="number" th:field="*{marketValue}" placeholder="Nhập giá trị chuyển nhượng của cầu thủ">
-                    <p th:if="${#fields.hasErrors('marketValue')}" th:errors="*{marketValue}" style="color: darkred">abc</p>
-                    <p th:if="${validMarketValue != null}" th:text="${validMarketValue}" style="color: darkred">abc</p>
+                    <input placeholder="Nhập giá trị chuyển nhượng của cầu thủ" th:field="*{marketValue}" type="number">
+                    <p style="color: darkred" th:errors="*{marketValue}" th:if="${#fields.hasErrors('marketValue')}">
+                        abc</p>
+                    <p style="color: darkred" th:if="${validMarketValue != null}" th:text="${validMarketValue}">abc</p>
                 </td>
             </tr>
             <tr class="table-rows">
@@ -79,28 +87,30 @@
                 <td class="items">
                     <select th:field="*{countryId}">
                         <option label="Chọn quốc tịch" th:value="null"></option>
-                        <option th:each="c: ${countries}" th:value="${c.id}" th:text="${c.name}"></option>
+                        <option th:each="c: ${countries}" th:text="${c.name}" th:value="${c.id}"></option>
                     </select>
                 </td>
             </tr>
             <tr class="table-rows">
                 <td class="items">D.O.B</td>
                 <td class="items">
-                    <input type="date" th:field="*{dateOfBirth}" id="datefield" onkeydown="return false">
+                    <input id="datefield" onkeydown="return false" th:field="*{dateOfBirth}" type="date">
                 </td>
             </tr>
             <tr class="table-rows">
                 <td class="items">Kỹ năng đặc biệt</td>
                 <td class="items">
-                    <input type="text" th:field="*{skill}">
+                    <input th:field="*{skill}" type="text">
                 </td>
             </tr>
             <tr class="table-rows">
                 <td class="items">Số áo <sup>*</sup></td>
                 <td class="items">
-                    <input type="number" th:field="*{clothesNumber}">
-                    <p th:if="${#fields.hasErrors('clothesNumber')}" th:errors="*{clothesNumber}" style="color: darkred">abc</p>
-                    <p th:if="${validClothesNumber != null}" th:text="${validClothesNumber}" style="color: darkred">abc</p>
+                    <input th:field="*{clothesNumber}" type="number">
+                    <p style="color: darkred" th:errors="*{clothesNumber}"
+                       th:if="${#fields.hasErrors('clothesNumber')}">abc</p>
+                    <p style="color: darkred" th:if="${validClothesNumber != null}" th:text="${validClothesNumber}">
+                        abc</p>
                 </td>
             </tr>
             <tr class="table-rows">
@@ -114,19 +124,27 @@
                 </td>
             </tr>
             <tr class="table-rows">
+                <td class="items">Phong độ</td>
+                <td class="items">
+                    <select th:field="*{conditionId}">
+                        <option th:each="c: ${conditions}" th:text="${c.name}" th:value="${c.id}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="table-rows">
                 <td class="items">Avatar</td>
                 <td class="items">
-                    <input type="text" th:field="*{avatar}" hidden>
-                    <input type="file" name="uploadImg" onchange="readURL(this);" accept=".jpg, .jpeg, .png, .svg">
-                    <img id="blah" src="#" alt="your image" />
-                    <p th:if="${validAvatar != null}" th:text="${validAvatar}" style="color: darkred">abc</p>
+                    <input hidden th:field="*{avatar}" type="text">
+                    <input accept=".jpg, .jpeg, .png, .svg" name="uploadImg" onchange="readURL(this);" type="file">
+                    <img alt="your image" id="blah" src="#"/>
+                    <p style="color: darkred" th:if="${validAvatar != null}" th:text="${validAvatar}">abc</p>
                 </td>
             </tr>
             <tr class="table-rows">
                 <td class="items"></td>
                 <td class="items">
-                    <input type="submit" value="Cập nhật" class="btn btn-success">
-                    <a href="/player/manage-player" class="btn btn-primary">Thoát</a></td>
+                    <input class="btn btn-success" type="submit" value="Cập nhật">
+                    <a class="btn btn-primary" href="/player/manage-player">Thoát</a></td>
                 </td>
             </tr>
         </table>

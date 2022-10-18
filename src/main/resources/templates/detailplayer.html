@@ -63,6 +63,10 @@
             <td><img style="width: 50px; height: 50px;" object-fit="contain" th:src="@{${player.getAvatar()}}"></td>
         </tr>
         <tr>
+            <td>Phong độ</td>
+            <td><img style="width: 50px; height: 50px;" object-fit="contain" th:src="@{${player.getConditionIcon()}}"></td>
+        </tr>
+        <tr>
             <td></td>
             <td><a class="btn btn-success" th:href="@{/player/delete-player(id=${player.getId()})}" onclick="return confirm('Bạn có chắc muốn sa thải cầu thủ này')">Sa thải</a>
                 <a href="/player/manage-player" class="btn btn-primary">Trở về màn hình quản lý</a></td>

@@ -4,3 +4,17 @@
     bottom: 0;
     width: 30%;
 }
+
+#toast-message {
+    animation: fadeOut 2s forwards;
+    animation-delay: 3s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
